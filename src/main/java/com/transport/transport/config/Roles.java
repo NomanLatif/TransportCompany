@@ -6,27 +6,8 @@
  * Ericsson Mobile Financial Services AB or in accordance with the terms and conditions stipulated
  * in the agreement/contract under which the program(s) have been supplied.
  *
- */
-package com.transport.transport.model.user;
-
-import java.util.UUID;
-
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-
-@Builder
-@Getter
-@Setter
-@EqualsAndHashCode
-public class User {
-  private UUID id;
-  private String name;
-  private String email;
-
-	public static User createNewFrom(User user) {
-		UUID id = UUID.randomUUID();
-		return User.builder().id(id).email(user.getEmail()).name(user.getName()).build();
-	}
+ */package com.transport.transport.config;
+public enum Roles {
+	ADMIN,
+	NORMAL
 }

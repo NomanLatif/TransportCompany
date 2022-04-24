@@ -6,27 +6,18 @@
  * Ericsson Mobile Financial Services AB or in accordance with the terms and conditions stipulated
  * in the agreement/contract under which the program(s) have been supplied.
  *
- */
-package com.transport.transport.model.user;
+ */package com.transport.transport.config;
 
-import java.util.UUID;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+@Configuration
+public class PasswordConfig {
 
-@Builder
-@Getter
-@Setter
-@EqualsAndHashCode
-public class User {
-  private UUID id;
-  private String name;
-  private String email;
-
-	public static User createNewFrom(User user) {
-		UUID id = UUID.randomUUID();
-		return User.builder().id(id).email(user.getEmail()).name(user.getName()).build();
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder(10);
 	}
 }

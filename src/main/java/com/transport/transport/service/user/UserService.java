@@ -9,23 +9,43 @@
  */
 package com.transport.transport.service.user;
 
-import com.transport.transport.dao.user.UserDao;
-import com.transport.transport.model.user.User;
+import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
+import com.transport.transport.dao.user.UserDao;
+import com.transport.transport.model.user.User;
 
 @Service
 public class UserService {
   private final UserDao userDao;
 
   @Autowired
-  public UserService(@Qualifier("postgres") UserDao userDao) {
+  public UserService(@Qualifier("fake") UserDao userDao) {
     this.userDao = userDao;
   }
 
-  public Optional<User> getById(Long id) {
+  public Optional<User> getById(UUID id) {
     return userDao.getById(id);
   }
+
+	public int add(User user) {
+		return userDao.add(user);
+	}
+
+	public List<User> getAll() {
+		return userDao.getAll();
+	}
+
+	public int delete(UUID id) {
+		return userDao.delete(id);
+	}
+
+	public void update(UUID id, User user) {
+		userDao.update(id,user);
+	}
 }

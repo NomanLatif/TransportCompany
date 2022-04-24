@@ -12,12 +12,13 @@ package com.transport.transport.dao.user;
 import com.transport.transport.model.user.User;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.stereotype.Repository;
 
 @Repository("postgres")
 public class UserDaoPostGres implements UserDao {
-
-  @Override
+	@Override
   public int add(User user) {
     return 0;
   }
@@ -28,17 +29,17 @@ public class UserDaoPostGres implements UserDao {
   }
 
   @Override
-  public Optional<User> getById(Long id) {
+  public Optional<User> getById(UUID id) {
     return Optional.empty();
   }
 
   @Override
-  public int update(Long id, User user) {
+  public int update(UUID id, User user) {
     return 0;
   }
 
   @Override
-  public int delete(Long id) {
+  public int delete(UUID id) {
     return 0;
   }
 }
