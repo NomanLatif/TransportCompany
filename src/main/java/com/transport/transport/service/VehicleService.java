@@ -7,7 +7,7 @@
  * in the agreement/contract under which the program(s) have been supplied.
  *
  */
-package com.transport.transport.service.user;
+package com.transport.transport.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,34 +18,36 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.transport.transport.dao.user.UserDao;
-import com.transport.transport.model.user.User;
+import com.transport.transport.dao.vehicle.VehicleDao;
+import com.transport.transport.model.User;
+import com.transport.transport.model.Vehicle;
 
 @Service
-public class UserService {
-  private final UserDao userDao;
+public class VehicleService {
+  private final VehicleDao vehicleDao;
 
   @Autowired
-  public UserService(@Qualifier("fake") UserDao userDao) {
-    this.userDao = userDao;
+  public VehicleService(@Qualifier("fakevehicle") VehicleDao vehicleDao) {
+    this.vehicleDao = vehicleDao;
   }
 
-  public Optional<User> getById(UUID id) {
-    return userDao.getById(id);
+  public Optional<Vehicle> getById(UUID id) {
+    return vehicleDao.getById(id);
   }
 
-	public int add(User user) {
-		return userDao.add(user);
+	public int add(Vehicle vehicle) {
+		return vehicleDao.add(vehicle);
 	}
 
-	public List<User> getAll() {
-		return userDao.getAll();
+	public List<Vehicle> getAll() {
+		return vehicleDao.getAll();
 	}
 
 	public int delete(UUID id) {
-		return userDao.delete(id);
+		return vehicleDao.delete(id);
 	}
 
-	public void update(UUID id, User user) {
-		userDao.update(id,user);
+	public void update(UUID id, Vehicle vehicle) {
+		vehicleDao.update(id,vehicle);
 	}
 }

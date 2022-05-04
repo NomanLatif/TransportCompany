@@ -7,7 +7,7 @@
  * in the agreement/contract under which the program(s) have been supplied.
  *
  */
-package com.transport.transport.model.user;
+package com.transport.transport.model;
 
 import java.util.UUID;
 

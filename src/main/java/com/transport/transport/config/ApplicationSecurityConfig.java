@@ -1,21 +1,12 @@
-/*
- * Copyright (c) 2009-$today.year Ericsson Mobile Financial Services AB, Sweden. All rights reserved.
- *
- * The Copyright to the computer program(s) herein is the property of Ericsson Mobile Financial
- * Services AB, Sweden. The program(s) may be used and/or copied with the written permission from
- * Ericsson Mobile Financial Services AB or in accordance with the terms and conditions stipulated
- * in the agreement/contract under which the program(s) have been supplied.
- *
- */package com.transport.transport.config;
+package com.transport.transport.config;
 
-import static com.transport.transport.config.Roles.ADMIN;
-import static com.transport.transport.config.Roles.NORMAL;
+import static com.transport.transport.config.Role.ADMIN;
+import static com.transport.transport.config.Role.NORMAL;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,10 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-import lombok.RequiredArgsConstructor;
-
 @Configuration
-@EnableWebSecurity
+//@EnableWebSecurity
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 	private final PasswordEncoder passwordEncoder;
 
@@ -38,8 +27,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http)	throws Exception {
 		http
 				.authorizeRequests()
-				.antMatchers("/", "index", "/css/*", "/js/*")
-				.permitAll()
+				.antMatchers("/", "index", "/css/*", "/js/*").permitAll()
+				.antMatchers("/api/**").hasRole(ADMIN.name())
 				.anyRequest()
 				.authenticated()
 				.and()
@@ -56,15 +45,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .authorities(STUDENT.getSimpleGrantedAuthorities())
                 .build();
 
-        UserDetails linda = User.builder()
-                .username("linda")
+        UserDetails yuxin = User.builder()
+                .username("yuxin")
                 .password(passwordEncoder.encode("password123"))
                 .roles(ADMIN.name()) //ROLE_ADMIN
 //                .authorities(ADMIN.getSimpleGrantedAuthorities())
                 .build();
 
-        UserDetails tom = User.builder()
-                .username("tom")
+        UserDetails savannah = User.builder()
+                .username("savannah")
                 .password(passwordEncoder.encode("password123"))
                 .roles(NORMAL.name()) //ROLE_ADMINTRAINEE
 //                .authorities(ADMINTRAINEE.getSimpleGrantedAuthorities())
@@ -72,7 +61,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return new InMemoryUserDetailsManager(
                 noman,
-                linda,
-                tom);
+                yuxin,
+                savannah);
     }
 }

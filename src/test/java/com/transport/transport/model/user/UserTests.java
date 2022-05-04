@@ -13,6 +13,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
+import com.transport.transport.model.User;
+
 public class UserTests {
 
   public static final String NOMAN = "Noman";

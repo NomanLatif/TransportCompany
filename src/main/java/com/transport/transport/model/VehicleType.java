@@ -6,8 +6,9 @@
  * Ericsson Mobile Financial Services AB or in accordance with the terms and conditions stipulated
  * in the agreement/contract under which the program(s) have been supplied.
  *
- */package com.transport.transport.config;
-public enum Roles {
-	ADMIN,
-	NORMAL
+ */package com.transport.transport.model;
+public enum VehicleType {
+	BUS,
+	MINI_BUS,
+	TRUCK
 }
